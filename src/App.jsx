@@ -394,7 +394,7 @@ export default function RSVPReader() {
                 <span style={{ color: wpm >= 700 ? C.ac : wpm >= 400 ? C.aw : "rgba(230,225,215,0.6)" }}>{wpm} WPM</span>
               </div>
               <input type="range" min={50} max={1500} step={25} value={wpm}
-                onChange={e => { setWpm(+e.target.value); if (!playing) setLiveWpm(+e.target.value); }}
+                onChange={e => { const v = +e.target.value; setWpm(v); setLiveWpm(v); if (playing && train !== "off") swRef.current = v; }}
                 style={{ width: "100%", height: 2, WebkitAppearance: "none", appearance: "none", background: `linear-gradient(to right, ${C.ac} 0%, ${C.ac} ${((wpm-50)/1450)*100}%, rgba(230,225,215,0.1) ${((wpm-50)/1450)*100}%, rgba(230,225,215,0.1) 100%)`, outline: "none", cursor: "pointer", borderRadius: 1 }} />
               <div style={{ display: "flex", justifyContent: "space-between", fontFamily: MN, fontSize: "0.6rem", color: "rgba(230,225,215,0.2)" }}>
                 <span>50</span><span>Avg: 250</span><span>1500</span>
